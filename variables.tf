@@ -1,25 +1,9 @@
 # Variable section for lab resources
 
-variable "tanium_init_dat" {
-  type        = string
-  sensitive   = true
-  description = "Base64-encoded content of tanium-init.dat from your Tanium Cloud portal"
-}
-
-variable "tanium_server" {
-  type        = string
-  description = "Tanium Cloud tenant FQDN (e.g. yourorg-ams-zsb1.cloud.tanium.com)"
-}
-
-variable "AZ_Region" {
-  type    = string
-  default = "centralus"
-}
-
 variable "lab_resource_group" {
   type        = string
   description = "Resource group for all lab activities"
-  default     = "RG_NA_lab"
+  default     = "RG_NA_lab_Single_server"
 }
 
 variable "admin_user" {
