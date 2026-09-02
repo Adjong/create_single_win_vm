@@ -169,23 +169,6 @@ resource "azurerm_windows_virtual_machine" "lab_vm" {
 }
 
 
-resource "azurerm_virtual_machine_extension" "tanium_init_dat" {
-  name                 = "Winfirewall"
-  virtual_machine_id   = azurerm_windows_virtual_machine.lab_vm.id
-  publisher            = "Microsoft.Compute"
-  type                 = "CustomScriptExtension"
-  type_handler_version = "1.10"
-
-  protected_settings = jsonencode({
-  commandToExecute = join(" & ", [
-      "netsh advfirewall firewall add rule name=Lab-Allow-SSH dir=in action=allow protocol=TCP localport=22 profile=any",
-      "netsh advfirewall firewall add rule name=Lab-Allow-RPC-WMI dir=in action=allow protocol=TCP localport=135 profile=any",
-      "netsh advfirewall firewall add rule name=Lab-Allow-NetBIOS dir=in action=allow protocol=TCP localport=139 profile=any",
-      "netsh advfirewall firewall add rule name=Lab-Allow-SMB dir=in action=allow protocol=TCP localport=445 profile=any",
-      "netsh advfirewall firewall add rule name=Lab-Allow-WMI-Dynamic dir=in action=allow protocol=TCP localport=49152-65535 profile=any"
-    ]) 
-  })
-}
 
 resource "azurerm_virtual_machine_extension" "windows_firewall_rules" {
   
