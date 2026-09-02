@@ -145,7 +145,7 @@ resource "azurerm_windows_virtual_machine" "lab_vm" {
   name = "TaniumServer"
   location            = data.azurerm_resource_group.lab.location
   resource_group_name = data.azurerm_resource_group.lab.name
-  size                = each.value.size
+  size                = "Standard_B2ls_v2"
 
   admin_username = var.admin_user
   admin_password = var.admin_pwd
